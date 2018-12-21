@@ -1,0 +1,126 @@
+.flex-container{
+    display: flex;
+    position: relative;
+}
+.myrow{
+    margin-bottom: 30px;
+}
+.login{
+    margin-bottom: -30px;
+}
+.login .fb-login{
+    background-color: #405AA9;
+    position: relative;
+}
+.login .fb-login .fa-facebook-f{
+    position: absolute;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    top:0px;
+    left: 0px;
+    height: 40px;
+    border-right: 1px #ffffff solid;
+    font-size:30px;
+}
+.sign-up{
+    border-top: 2px solid #DEB237;
+    border-bottom: 2px solid #DEB237;
+    background-color: #F2ECE4;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    min-height: 412px;
+}
+.sign-up input{
+    flex:1;
+    color: #926152;
+    border: none;
+    font-size: 11px;
+    padding-left: 10px;
+    letter-spacing: 1px;
+    height: 30px;
+    margin-bottom: 20px;
+}
+.sign-up input:focus{
+    outline: none;
+}
+.sign-up button:focus{
+    outline: none;
+}
+.sign-up input::placeholder{
+    color: #926152;
+    opacity: 1;
+}
+.sign-up .fas{
+    background-color: white;
+    color: #DEB237;
+    font-size: 18px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 0px;
+    height: 30px;
+}
+
+.sign-up .far{
+    color: #DEB237;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.sign-up .text{
+    color: #C27760;
+    margin-left: 10px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: none;
+}
+.sign-up button{
+    background-color: #5F2C1F;
+    border: none;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    width: 100%;
+}
+
+.sign-up .fpassword{
+    color: #C27760;
+    letter-spacing: 1px;
+    text-transform: none;
+    cursor: pointer;
+    
+}
+input[type='checkbox']{
+    
+ 
+}
+.checkmark {
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background:none;
+  border: 2px solid #DEB237;
+  margin-top: 5px;
+  position: relative;
+}
+
+.sign-up .fas.fa-check{
+    color: #DEB237;
+    font-size: 10px;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    top:1px;
+    height: 10px;
+    background: none;
+    position: absolute;
+    display: none;
+}
+
+.last{
+    margin-bottom: 140px;
+}

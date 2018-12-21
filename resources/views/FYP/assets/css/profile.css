@@ -1,0 +1,275 @@
+.profile-background{
+    background-color: #F2ECE4;
+}
+.profile-side{
+    margin-top: 20px;
+    padding-top: 20px;
+    background-color: #ffffff;
+    border-top-left-radius: 110px;
+    border-top-right-radius: 110px;
+    width: 220px;
+    height: auto;
+}
+.profile-side .initials{
+    background-color: #F2ECE4;
+    height: 170px;
+    width: 170px;
+    border: 4px solid #DEB237;
+    border-radius: 50%;
+    font-size:  70px;
+    font-family: 'proximanova';
+    color: #5F2C1F; 
+    padding-top: 30px;
+}
+.profile-side .name{
+    font-family: 'proximanova';
+    color: #5F2C1F; 
+    margin-top: 10px;
+    font-size:  25px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.profile-side .button{
+    width: 100%;
+    background-color: #ffffff;
+    color: #C27760;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #DEB237;
+}
+.profile-side .orders{
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.profile-side .settings{
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+.profile-side .logout{
+    padding-left: 10px;
+    padding-top: 10px;
+    border-bottom: none;
+}
+.profile-side .active{
+    background-color: #F2ECE4;
+    font-weight: bold;
+    border-left: 3px solid #926152;
+    color: #5F2C1F;
+    border-bottom: none;
+}
+.profile-side .fas{
+    font-size: 12px;
+    margin-right: 10px;
+    color: #C27760;
+}
+.profile-side .fa-text{
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+.profile-side .button:hover{
+    cursor: pointer;
+}
+.flex-container{
+    display: flex;
+}
+.order-summary{
+    margin-top: 50px;
+}
+.order-summary .icon{
+    height: 80px;
+    width: 80px;
+    background-color: #DEB237;
+    color: #ffffff;
+    font-size: 40px;
+    padding-top: 13px;
+}
+.order-summary .detail{
+    height: 80px;
+    flex: 1;
+    background-color: #ffffff;
+    border-bottom: 1px solid #DEB237;
+    border-top: 1px solid #DEB237;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.order-summary .detail .title{
+    color: #5F2C1F;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 900;
+}
+.order-summary .detail .info{
+    color: #C27760;
+    font-size: 30px;
+    font-weight: 900;
+}
+.profile-order .filter{
+    display: inline-block;
+    background-color: #ffffff;
+    color: #5F2C1F;
+    margin-top: 30px;
+    font-size: 10px;
+    padding-left:  5px;
+    padding-right:  5px;
+    margin-right: 5px;
+    letter-spacing: 1px;
+    font-weight: bolder;
+    margin-bottom: 20px;
+}
+.profile-order .filter:hover{
+    cursor: pointer;
+}
+.profile-order .active{
+    background-color: #5F2C1F;
+    color: #ffffff;
+}
+.profile-order .order-detail{
+    border-top: 1px solid #DEB237;
+    border-bottom: 1px solid #DEB237;
+    width: 100%;
+    background-color: #ffffff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+.profile-order .order-detail .order-num{
+    font-size: 15px;
+    color: #5F2C1F;
+    text-decoration: underline;
+    text-decoration-color: #BEAB9A;
+    margin-right: 15px;
+    font-weight: 900;
+    display: inline-block;
+}
+.profile-order .order-detail .order-date{
+    font-size: 10px;
+    text-decoration: underline;
+    font-style: italic;
+    text-decoration-color: #BEAB9A;
+    color: #C27760;
+    display: inline-block;
+}
+.order-detail .button{
+    width: 50px;
+    font-size: 8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: white;
+    float: right;
+    letter-spacing: 1px;
+    display: inline-block;
+}
+.order-detail .received{
+    background-color: #139148;
+}
+.order-detail .returned{
+    background-color: #EF5B30;
+}
+.order-detail .canceled{
+    background-color: #BF2932;
+}
+.order-detail .enroute{
+    background-color: #1073BA;
+}
+.order-detail .shipped{
+    background-color: #33ACE0;
+}
+.border-profile{
+    margin-top: 100px;
+}
+.first-div{
+    margin-top: 50px
+}
+.settings-div{
+    background-color: #ffffff;
+    border-top: 1px solid #DEB237;
+    border-bottom: 1px solid #DEB237;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+.settings-div .title{
+    color: #5F2C1F;
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+.settings-div .heading{
+    font-size: 12px;
+    color: #C27760;
+    margin-bottom: 5px;
+}
+.settings-div input{
+    border: none;
+    background-color: #F2ECE4;
+    color: #5F2C1F;
+    width: 100%;
+    height: 30px;
+    padding-left: 15px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-size: 10px;
+}
+.settings-div input::placeholder {
+    color: #5F2C1F;
+    opacity: 1;
+}
+.settings-div button{
+    background-color: #5F2C1F;
+    border: none;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.settings-div .icon{
+    height: 20px;
+}
+.settings-div .icons{
+    float: right;
+}
+.fa-question-circle:hover{
+    cursor: pointer;
+}
+.last-div{
+    margin-bottom: 40px;
+}
+
+@media (min-width:0px) and (max-width:1000px)
+{
+    .profile-side{
+        width: 100%;   
+    }
+    .profile-side .initials{
+        padding-top: 25px;
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (min-width:0px) and (max-width:400px)
+{
+    .order-detail .button{
+        display: block;
+    }
+    .profile-order .order-detail{
+        padding-bottom: 20px;
+    }
+    
+    .profile-order .order-detail .order-num{
+        display: block;
+    }
+    .profile-order .order-detail .order-date{
+        display: block;
+    }
+}       
