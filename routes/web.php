@@ -15,6 +15,4 @@ Route::get('/', function () {
     return view('home');
 });
 
-Routes::view('/login', function() {
-    return view('signin');
-});
+Route::view('/login', 'signin');
