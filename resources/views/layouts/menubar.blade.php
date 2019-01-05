@@ -1,7 +1,7 @@
 <div class="ak-container">
     <div class="site-branding">
         <a href="#" class="custom-logo-link" rel="home" itemprop="url">
-            <img src="https://storage.cloud.google.com/trip-journal-218803.appspot.com/WebConLogo.PNG" alt="LOGO">
+            <img src="https://storage.cloud.google.com/trip-journal-218803.appspot.com/WebConLogo.PNG" style="width:200px;" alt="LOGO">
         </a>
     </div>
     <!-- .site-branding -->
@@ -13,23 +13,51 @@
             <div class="three"></div>
         </div>
         <div class="primary-menu">
-            <ul id="menu-primary-menu" class="menu">
+            {{-- <ul id="menu-primary-menu" class="menu">
                 <li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-22 current_page_item menu-item-178"><a href="https://demo.accesspressthemes.com/construction/">Home</a></li>
-                <li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-22 current_page_item menu-item-178"><a href="{{url('login')}}">Login</a></li>
-                <li id="menu-item-152" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-152"><a href="https://demo.accesspressthemes.com/construction/category/blogs/">Blogs</a></li>
-                <li id="menu-item-150" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-150"><a href="https://demo.accesspressthemes.com/construction/shop/">Shop</a></li>
-                <li id="menu-item-149" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-149"><a href="https://demo.accesspressthemes.com/construction/cart/">Cart</a></li>
-                <li id="menu-item-179" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-179"><a href="#">Pages</a>
-                    <ul class="sub-menu">
-                        <li id="menu-item-155" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-155"><a href="https://demo.accesspressthemes.com/construction/how-to-build-a-construction-plan/">Post Page Layout</a></li>
-                        <li id="menu-item-156" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-156"><a href="https://demo.accesspressthemes.com/construction/lorem-ipsum-is-simply-dummy/">Page Layout</a></li>
-                        <li id="menu-item-173" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-173"><a href="https://demo.accesspressthemes.com/construction/page-markup/">Page Markup</a></li>
-                        <li id="menu-item-170" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-170"><a href="http://demo.accesspressthemes.com/construction/404-page">404 Page</a></li>
-                        <li id="menu-item-169" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-169"><a href="http://demo.accesspressthemes.com/construction?s=a">Search</a></li>
-                    </ul>
+                <li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-22 current_page_item menu-item-178">
+                    <a href="{{url('register')}}">Sign Up</a>
+                </li>
+                <li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-22 current_page_item menu-item-178">
+                    <a href="{{url('login')}}">Log In</a>
                 </li>
                 <li id="menu-item-220" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-220"><a href="https://demo.accesspressthemes.com/construction/contact-us/">Contact Us</a></li>
-            </ul>
+                
+            </ul> --}}
+            <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                        <li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-22 current_page_item menu-item-178">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-22 current_page_item menu-item-178">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-22 current_page_item menu-item-178">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                    <li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-22 current_page_item menu-item-178">
+                        <a href="#">Contact Us</a>
+                    </li> 
+                </ul>
         </div>
         {{--
         <div class="search-toggle">
