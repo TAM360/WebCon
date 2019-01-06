@@ -15,4 +15,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::view('/login', 'signin');
+Auth::routes();
+
+Route::get('/edit', function () {
+    return view('auth.edit');
+});
+Route::get('/home', 'HomeController@index')->name('home');

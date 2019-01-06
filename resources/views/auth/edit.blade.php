@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <style scoped>
     body {  
            font-family: 'Roboto', sans-serif;
@@ -108,31 +111,54 @@
            font-size: 20px;
        }
    </style>
-<div class="signup-form">
-        <form action="/examples/actions/confirmation.php" method="post">
-            <h2>Create an Account</h2>
-            <p class="hint-text">Sign up with your social media account or email address</p>
-            <div class="social-btn text-center">
-                <a href="#" class="btn btn-primary btn-lg"><i class="fa fa-facebook"></i> Facebook</a>
-                <a href="#" class="btn btn-info btn-lg"><i class="fa fa-twitter"></i> Twitter</a>
-                <a href="#" class="btn btn-danger btn-lg"><i class="fa fa-google"></i> Google</a>
-            </div>
-            <div class="or-seperator"><b>or</b></div>
-            <div class="form-group">
-                <input type="text" class="form-control input-lg" name="username" placeholder="Username" required="required">
-            </div>
-            <div class="form-group">
-                <input type="email" class="form-control input-lg" name="email" placeholder="Email Address" required="required">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control input-lg" name="password" placeholder="Password" required="required">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control input-lg" name="confirm_password" placeholder="Confirm Password" required="required">
-            </div>  
-            <div class="form-group">
-                <button type="submit" class="btn btn-success btn-lg btn-block signup-btn">Sign Up</button>
-            </div>
-        </form>
-        <div class="text-center">Already have an account? <a href="#">Login here</a></div>
-    </div>
+    <div class="signup-form">
+            <form method="POST" action="{{ route('register') }}">
+                    @csrf
+                <h2>Edit your Account Details</h2>
+                <div class="form-group">
+                    <div class="text-center">
+                        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                        
+                        <p>Upload a photo</p>
+                        <input type="file" class="text-center center-block file-upload">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input id="name" placeholder="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                    @if ($errors->has('name'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <input id="email" placeholder="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                    @if ($errors->has('email'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <input id="password" placeholder="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                    @if ($errors->has('password'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <input id="password-confirm" placeholder="confirm password" type="password" class="form-control" name="password_confirmation" required>
+                </div>  
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-large">
+                        {{ __('Update Profile') }}
+                        {{-- Sign Up --}}
+                    </button>
+                </div>
+            </form>
+        </div>
+@endsection
+
