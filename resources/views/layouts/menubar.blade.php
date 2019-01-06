@@ -1,7 +1,7 @@
 <div class="ak-container">
     <div class="site-branding">
-        <a href="#" class="custom-logo-link" rel="home" itemprop="url">
-            <img src="https://storage.cloud.google.com/trip-journal-218803.appspot.com/WebConLogo.PNG" style="width:200px;" alt="LOGO">
+        <a href="{{ route('home') }}" class="custom-logo-link" rel="home" itemprop="url">
+            <img src="https://storage.cloud.google.com/trip-journal-218803.appspot.com/WebConLogo.PNG" style="width:150px;" alt="LOGO">
         </a>
     </div>
     <!-- .site-branding -->
@@ -40,7 +40,7 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-
+                            
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
