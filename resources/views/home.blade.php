@@ -28,7 +28,7 @@
             @include('layouts.home.portfolio')
             {{-- @include('layouts.home.blog') --}}
             @include('layouts.home.helpYou')
-            @include('layouts.home.shopItems')
+            {{-- @include('layouts.home.shopItems') --}}
             {{-- @include('layouts.home.companyClients') --}}
         </div>
         <!-- #content -->
