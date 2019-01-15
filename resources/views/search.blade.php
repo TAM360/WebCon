@@ -325,8 +325,8 @@
                                     <h4>Categories</h4>
                                     <div class="form-group"> <input type="radio" name="category" value="cement"> <span style="font-size:15px">Cement</span> <br> </div>
                                     <div class="form-group"> <input type="radio" name="category" value="tiles"> <span style="font-size:15px">Tiles </span> <br> </div>
-                                    <div class="form-group"> <input type="radio" name="category" value="polymer"> <span style="font-size:15px">Plastic </span> <br> </div>
-                                    <div class="form-group"> <input type="radio" name="category" value="paint"> <span style="font-size:15px">Plastic</span> <br> </div>
+                                    {{-- <div class="form-group"> <input type="radio" name="category" value="polymer"> <span style="font-size:15px">Plastic </span> <br> </div> --}}
+                                    <div class="form-group"> <input type="radio" name="category" value="paint"> <span style="font-size:15px">Paint</span> <br> </div>
 
                                     <div class="form-group">
                                         <h4>Price</h4>
@@ -348,8 +348,7 @@
                                     <span class="fa fa-star checked"></span>
 
                                     <br><br>
-                                    <button style="background-color:#FEA100; border-radius:0;padding:10px;font-size:14px;" 
-                                        type="submit">Search</button>
+                                    <button class="btn btn-primary" type="submit">Search</button>
                                     
                                 </form>
                             </div>

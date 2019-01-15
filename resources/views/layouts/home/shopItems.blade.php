@@ -1,8 +1,7 @@
 <div class="item-wrap wow fadeInUp">
         <div class="item-img">
             <a class="home_product_img" href="#" title="{{$product->name}}">
-            <img width="300" height="300" src="{{$product->image_url}}" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="" srcset="//demo.accesspressthemes.com/construction/wp-content/uploads/2016/10/6-300x300.jpg 300w, //demo.accesspressthemes.com/construction/wp-content/uploads/2016/10/6-150x150.jpg 150w, //demo.accesspressthemes.com/construction/wp-content/uploads/2016/10/6-180x180.jpg 180w, //demo.accesspressthemes.com/construction/wp-content/uploads/2016/10/6-75x75.jpg 75w, //demo.accesspressthemes.com/construction/wp-content/uploads/2016/10/6-235x235.jpg 235w, //demo.accesspressthemes.com/construction/wp-content/uploads/2016/10/6-90x90.jpg 90w"
-                sizes="(max-width: 300px) 100vw, 300px" /> 
+            <img width="300" height="300" src="{{$product->image_url}}" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="" sizes="(max-width: 300px) 100vw, 300px" /> 
             </a>
         </div>
         <div class="product-info-wrap no-rating">

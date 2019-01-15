@@ -22,5 +22,8 @@ Route::get('/edit', function () {
 });
 
 Route::get('/search', 'SearchProductsController@index');
+Route::get('/item', function () {
+    return view('item');
+});
 Route::get('/filter', 'SearchProductsController@searchByFilter')->name('filter');
 Route::get('/home', 'HomeController@index')->name('home');
