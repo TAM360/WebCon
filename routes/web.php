@@ -20,4 +20,7 @@ Auth::routes();
 Route::get('/edit', function () {
     return view('auth.edit');
 });
+
+Route::get('/search', 'SearchProductsController@index');
+Route::get('/filter', 'SearchProductsController@searchByFilter')->name('filter');
 Route::get('/home', 'HomeController@index')->name('home');
