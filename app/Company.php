@@ -10,4 +10,9 @@ class Company extends Model
     {
         return $this->hasMany("App\CompanyProduct");
     }
+
+    public function companyAddress()
+    {
+        return $this->hasMany('App\CompanyAddress');
+    }
 }
