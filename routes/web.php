@@ -27,3 +27,9 @@ Route::get('/item', function () {
 });
 Route::get('/filter', 'SearchProductsController@searchByFilter')->name('filter');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('messages', 'ChatsController@index')->name('chats');
+
+Route::get("insert", 'UploadProject@index');
+Route::get("project", 'UploadProject@show');
+Route::post("store", 'UploadProject@store');
+Route::post("setbid", 'BidingController@store');
