@@ -4,43 +4,124 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3a98e934f7cb11f9a9600b64f41a8f03",
+    "content-hash": "7fe9080d31515940d727bdd14ce7444c",
     "packages": [
         {
-            "name": "babenkoivan/scout-elasticsearch-driver",
-            "version": "v3.9.0",
+            "name": "algolia/algoliasearch-client-php",
+            "version": "2.2.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/babenkoivan/scout-elasticsearch-driver.git",
-                "reference": "b27f9c36c7ce41fff06da509783bce2c2f7965e4"
+                "url": "https://github.com/algolia/algoliasearch-client-php.git",
+                "reference": "7423057ca904f676307eddf300e08a26e2d194e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/babenkoivan/scout-elasticsearch-driver/zipball/b27f9c36c7ce41fff06da509783bce2c2f7965e4",
-                "reference": "b27f9c36c7ce41fff06da509783bce2c2f7965e4",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/7423057ca904f676307eddf300e08a26e2d194e0",
+                "reference": "7423057ca904f676307eddf300e08a26e2d194e0",
                 "shasum": ""
             },
             "require": {
-                "elasticsearch/elasticsearch": "6.*",
-                "laravel/scout": "6.*",
-                "php": ">=7.1.3"
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": "^5.3 || ^7.0",
+                "psr/http-message": "^1.0",
+                "psr/log": "^1.0",
+                "psr/simple-cache": "^1.0"
             },
             "require-dev": {
-                "mockery/mockery": "1.*",
-                "phpunit/phpunit": "7.*"
+                "phpunit/phpunit": "^4.8",
+                "symfony/yaml": "^2.0 || ^4.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "If you prefer to use Guzzle HTTP client instead of the Http Client implementation provided by the package"
+            },
+            "bin": [
+                "bin/algolia-doctor"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.0": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Algolia\\AlgoliaSearch\\": "src/"
+                },
+                "files": [
+                    "src/Http/Psr7/functions.php",
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Algolia Team",
+                    "email": "contact@algolia.com"
+                }
+            ],
+            "description": "Algolia Search API Client for PHP",
+            "keywords": [
+                "algolia",
+                "api",
+                "client",
+                "php",
+                "search"
+            ],
+            "time": "2019-02-26T15:58:17+00:00"
+        },
+        {
+            "name": "algolia/scout-extended",
+            "version": "v1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/algolia/scout-extended.git",
+                "reference": "f3475be9279dce705d438b74f97d91195f5e4409"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/algolia/scout-extended/zipball/f3475be9279dce705d438b74f97d91195f5e4409",
+                "reference": "f3475be9279dce705d438b74f97d91195f5e4409",
+                "shasum": ""
+            },
+            "require": {
+                "algolia/algoliasearch-client-php": "^2.0",
+                "ext-json": "*",
+                "illuminate/console": "5.6.*|5.7.*|5.8.*",
+                "illuminate/contracts": "5.6.*|5.7.*|5.8.*",
+                "illuminate/database": "5.6.*|5.7.*|5.8.*",
+                "illuminate/filesystem": "5.6.*|5.7.*|5.8.*",
+                "illuminate/support": "5.6.*|5.7.*|5.8.*",
+                "laravel/scout": "^6.1.1|^7.0",
+                "php": "^7.1.3",
+                "riimu/kit-phpencoder": "^2.3"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "^1.8",
+                "mockery/mockery": "^1.1",
+                "nunomaduro/larastan": "^0.3",
+                "orchestra/testbench": "^3.0",
+                "phpstan/phpstan": "^0.11",
+                "phpunit/phpunit": "^7.0|^8.0"
+            },
+            "suggest": {
+                "ext-dom": "Required to use the HTML Splitter."
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
-                        "ScoutElastic\\ScoutElasticServiceProvider"
+                        "Algolia\\ScoutExtended\\ScoutExtendedServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "ScoutElastic\\Tests\\": "tests/",
-                    "ScoutElastic\\": "src/"
+                    "Algolia\\ScoutExtended\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -49,23 +130,25 @@
             ],
             "authors": [
                 {
-                    "name": "Babenko Ivan",
-                    "email": "babenko.i.a@gmail.com",
-                    "role": "Developer"
+                    "name": "Algolia Team",
+                    "email": "contact@algolia.com"
+                },
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
                 }
             ],
-            "description": "The Elasticsearch Driver for Laravel Scout",
-            "homepage": "https://babenkoivan.github.io/scout-elasticsearch-driver/",
+            "description": "Scout Extended extends Laravel Scout adding algolia-specific features",
             "keywords": [
-                "driver",
-                "elastic",
-                "elasticsearch",
-                "engine",
+                "algolia",
+                "analytics",
+                "extended",
                 "laravel",
+                "places",
                 "scout",
                 "search"
             ],
-            "time": "2018-11-25T12:06:45+00:00"
+            "time": "2019-03-07T12:29:20+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -326,63 +409,6 @@
                 "validator"
             ],
             "time": "2018-12-04T22:38:24+00:00"
-        },
-        {
-            "name": "elasticsearch/elasticsearch",
-            "version": "v6.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "b8e3bc9d1fc54d6a18692df0b74956efe7fe241a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/b8e3bc9d1fc54d6a18692df0b74956efe7fe241a",
-                "reference": "b8e3bc9d1fc54d6a18692df0b74956efe7fe241a",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": ">=1.3.7",
-                "guzzlehttp/ringphp": "~1.0",
-                "php": "^7.0",
-                "psr/log": "~1.0"
-            },
-            "require-dev": {
-                "cpliakas/git-wrapper": "~1.0",
-                "doctrine/inflector": "^1.1",
-                "mockery/mockery": "0.9.4",
-                "phpstan/phpstan-shim": "0.8.3",
-                "phpunit/phpunit": "6.3.0",
-                "squizlabs/php_codesniffer": "3.0.2",
-                "symfony/finder": "^2.8",
-                "symfony/yaml": "^2.8"
-            },
-            "suggest": {
-                "ext-curl": "*",
-                "monolog/monolog": "Allows for client-level logging and tracing"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Elasticsearch\\": "src/Elasticsearch/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Zachary Tong"
-                }
-            ],
-            "description": "PHP Client for Elasticsearch",
-            "keywords": [
-                "client",
-                "elasticsearch",
-                "search"
-            ],
-            "time": "2017-12-05T14:15:58+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -666,107 +692,6 @@
                 "url"
             ],
             "time": "2018-12-04T20:46:45+00:00"
-        },
-        {
-            "name": "guzzlehttp/ringphp",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/RingPHP.git",
-                "reference": "5e2a174052995663dd68e6b5ad838afd47dd615b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/RingPHP/zipball/5e2a174052995663dd68e6b5ad838afd47dd615b",
-                "reference": "5e2a174052995663dd68e6b5ad838afd47dd615b",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/streams": "~3.0",
-                "php": ">=5.4.0",
-                "react/promise": "~2.0"
-            },
-            "require-dev": {
-                "ext-curl": "*",
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "ext-curl": "Guzzle will use specific adapters if cURL is present"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Ring\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Provides a simple API and specification that abstracts away the details of HTTP into a single PHP function.",
-            "time": "2018-07-31T13:22:33+00:00"
-        },
-        {
-            "name": "guzzlehttp/streams",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/streams.git",
-                "reference": "47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/streams/zipball/47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5",
-                "reference": "47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Stream\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Provides a simple abstraction over streams of data",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "Guzzle",
-                "stream"
-            ],
-            "time": "2014-10-12T19:18:40+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -2411,33 +2336,33 @@
             "time": "2018-07-19T23:38:55+00:00"
         },
         {
-            "name": "react/promise",
-            "version": "v2.7.0",
+            "name": "riimu/kit-phpencoder",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/reactphp/promise.git",
-                "reference": "f4edc2581617431aea50430749db55cc3fc031b3"
+                "url": "https://github.com/Riimu/Kit-PHPEncoder.git",
+                "reference": "7e876d25019c3f6c23321ab5ac1a55c72fcd0933"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/promise/zipball/f4edc2581617431aea50430749db55cc3fc031b3",
-                "reference": "f4edc2581617431aea50430749db55cc3fc031b3",
+                "url": "https://api.github.com/repos/Riimu/Kit-PHPEncoder/zipball/7e876d25019c3f6c23321ab5ac1a55c72fcd0933",
+                "reference": "7e876d25019c3f6c23321ab5ac1a55c72fcd0933",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "php": ">=5.6.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8"
+                "phpunit/phpunit": "^7.2 || ^6.5 || ^5.7"
+            },
+            "suggest": {
+                "ext-gmp": "To convert GMP numbers into PHP code"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "React\\Promise\\": "src/"
-                },
-                "files": [
-                    "src/functions_include.php"
-                ]
+                    "Riimu\\Kit\\PHPEncoder\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2445,16 +2370,21 @@
             ],
             "authors": [
                 {
-                    "name": "Jan Sorgalla",
-                    "email": "jsorgalla@gmail.com"
+                    "name": "Riikka Kalliomäki",
+                    "email": "riikka.kalliomaki@gmail.com",
+                    "homepage": "http://riimu.net"
                 }
             ],
-            "description": "A lightweight implementation of CommonJS Promises/A for PHP",
+            "description": "Highly customizable alternative to var_export for PHP code generation",
+            "homepage": "http://kit.riimu.net",
             "keywords": [
-                "promise",
-                "promises"
+                "code",
+                "encoder",
+                "export",
+                "generator",
+                "variable"
             ],
-            "time": "2018-06-13T15:59:06+00:00"
+            "time": "2018-07-03T12:46:23+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

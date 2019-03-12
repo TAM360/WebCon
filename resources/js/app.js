@@ -8,7 +8,6 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -20,6 +19,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('chat-form', require('./components/ChatForm.vue'));
 Vue.component('chat-messages', require('./components/ChatMessages.vue'));
+Vue.component('algolia-search', require('./components/AlgoliaSearch.vue'));
 
 const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))

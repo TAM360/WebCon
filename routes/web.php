@@ -26,6 +26,8 @@ Route::get('/item', function () {
     return view('item');
 });
 Route::get('/filter', 'SearchProductsController@searchByFilter')->name('filter');
+Route::get('/algolia/search', 'SearchProductsController@searchByAlgolia');
+Route::get('/algolia','SearchProductsController@algolia' );
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('messages', 'ChatsController@index')->name('chats');
 

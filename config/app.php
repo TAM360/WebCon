@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'z'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -164,12 +164,8 @@ return [
 
         /*
          * Package Service Providers...
-         */
-        // the Scout package itself  
+         */  
         Laravel\Scout\ScoutServiceProvider::class,
-        
-        // the driver for Elasticsearch
-        ScoutElastic\ScoutElasticServiceProvider::class,
         
         /*
          * Application Service Providers...
