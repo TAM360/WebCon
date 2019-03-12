@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CompanyProduct;
-use PHPUnit\Framework\Constraint\Exception;
-use Mockery\Generator\StringManipulation\Pass\Pass;
+use Log;
 
 class SearchProductsController extends Controller
 {
@@ -23,25 +22,42 @@ class SearchProductsController extends Controller
         return view('search')->with('products', $products);
     }
 
+    public function algolia()
+    {
+        return view('algolia');
+    }
+
     public function searchByAlgolia(Request $request)
     {
         // First we define the error message we are going to show if no keywords
         // existed or if no results found.
         $error = ['error' => 'No results found, please try with different keywords.'];
 
-        try 
-        {
+        // try 
+        // {
             if ($request->has('q'))
             {
                 $products = CompanyProduct::search($request->get('q'))->get();
-                return $products->count() ? $products : $error;
+                return $products;
             }
 
             return $error;
-        }
-        catch (Exception $e)
-        {
+        // }
+        // catch (\GuzzleHttp\Exception\ConnectException $e) {
+        //     // log the error here
+    
+        //     Log::Warning('guzzle_connect_exception', [
+        //             'url' => $request->fullUrl(),
+        //             'message' => $e->getMessage()
+        //     ]);
             
-        }
+        // } 
+        // catch (\GuzzleHttp\Exception\RequestException $e) {
+    
+        //     Log::Warning('guzzle_connection_timeout', [
+        //             'url' => $request->fullUrl(),
+        //             'message' => $e->getMessage()
+        //     ]);
+        // }
     }
 }
