@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Company extends Model
 {
+    use Searchable; 
+
     protected $fillable = [
         'name', 'email', 'password',
     ];

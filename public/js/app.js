@@ -14188,7 +14188,7 @@ var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(51)
 /* template */
-var __vue_template__ = __webpack_require__(52)
+var __vue_template__ = __webpack_require__(55)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -14231,7 +14231,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(54);
+module.exports = __webpack_require__(57);
 
 
 /***/ }),
@@ -14261,7 +14261,7 @@ Vue.component('chat-form', __webpack_require__(14));
 Vue.component('chat-messages', __webpack_require__(15));
 Vue.component('algolia-search', __webpack_require__(16));
 
-var files = __webpack_require__(53);
+var files = __webpack_require__(56);
 files.keys().map(function (key) {
   return Vue.component(key.split('/').pop().split('.')[0], files(key));
 });
@@ -49251,7 +49251,7 @@ if (false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 
 
@@ -49363,194 +49363,11 @@ var axios = __webpack_require__(6);
 /* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "well well-sm" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("div", { staticClass: "input-group input-group-md" }, [
-          _c("div", { staticClass: "icon-addon addon-md" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.query,
-                  expression: "query"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "What are you looking for?" },
-              domProps: { value: _vm.query },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.query = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: "input-group-btn" }, [
-            !_vm.loading
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-default",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function($event) {
-                        return _vm.search()
-                      }
-                    }
-                  },
-                  [_vm._v("Search!")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.loading
-              ? _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-default",
-                    attrs: { type: "button", disabled: "disabled" }
-                  },
-                  [_vm._v("Searching...")]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.error
-              ? _c(
-                  "div",
-                  {
-                    staticClass: "alert alert-danger",
-                    attrs: { role: "alert" }
-                  },
-                  [
-                    _c("span", {
-                      staticClass: "glyphicon glyphicon-exclamation-sign",
-                      attrs: { "aria-hidden": "true" }
-                    }),
-                    _vm._v(
-                      "\n                       @" +
-                        _vm._s(_vm.error) +
-                        "\n                   "
-                    )
-                  ]
-                )
-              : _vm._e()
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row list-group", attrs: { id: "products" } },
-      _vm._l(_vm.products, function(product) {
-        return _c("div", { staticClass: "item col-xs-4 col-lg-4" }, [
-          _c("div", { staticClass: "thumbnail" }, [
-            _c("img", {
-              staticClass: "group list-group-image",
-              attrs: { src: product.image_url, alt: product.name }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "caption" }, [
-              _c("h4", { staticClass: "group inner list-group-item-heading" }, [
-                _vm._v("$@" + _vm._s(product.name))
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "group inner list-group-item-text" }, [
-                _vm._v("$@" + _vm._s(product.description))
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-xs-12 col-md-6" }, [
-                  _c("p", { staticClass: "lead" }, [
-                    _vm._v("$@" + _vm._s(product.price))
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm._m(0, true)
-              ])
-            ])
-          ])
-        ])
-      }),
-      0
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12 col-md-6" }, [
-      _c("a", { staticClass: "btn btn-success", attrs: { href: "#" } }, [
-        _vm._v("Add to cart")
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3f477b7e", module.exports)
-  }
-}
+module.exports = __webpack_require__(53);
+
 
 /***/ }),
 /* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./components/AlgoliaSearch.vue": 16,
-	"./components/ChatForm.vue": 14,
-	"./components/ChatMessages.vue": 15,
-	"./components/ExampleComponent.vue": 13
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 53;
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(60);
-
-
-/***/ }),
-/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -49575,7 +49392,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(61);
+module.exports = __webpack_require__(54);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -49591,7 +49408,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 61 */
+/* 54 */
 /***/ (function(module, exports) {
 
 /**
@@ -50322,6 +50139,185 @@ if (hadRuntime) {
   (function() { return this })() || Function("return this")()
 );
 
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "well well-sm" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "input-group input-group-md" }, [
+          _c("div", { staticClass: "icon-addon addon-md" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.query,
+                  expression: "query"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "What are you looking for?" },
+              domProps: { value: _vm.query },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.query = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "input-group-btn" }, [
+            !_vm.loading
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.search()
+                      }
+                    }
+                  },
+                  [_vm._v("Search!")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.loading
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default",
+                    attrs: { type: "button", disabled: "disabled" }
+                  },
+                  [_vm._v("Searching...")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.error
+              ? _c(
+                  "div",
+                  {
+                    staticClass: "alert alert-danger",
+                    attrs: { role: "alert" }
+                  },
+                  [
+                    _c("span", {
+                      staticClass: "glyphicon glyphicon-exclamation-sign",
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(
+                      "\n                       @" +
+                        _vm._s(_vm.error) +
+                        "\n                   "
+                    )
+                  ]
+                )
+              : _vm._e()
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row list-group", attrs: { id: "products" } },
+      _vm._l(_vm.products, function(product) {
+        return _c("div", { staticClass: "item col-xs-4 col-lg-4" }, [
+          _c("div", { staticClass: "thumbnail" }, [
+            _c("img", {
+              staticClass: "group list-group-image",
+              attrs: { src: product.image_url, alt: product.name }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "caption" }, [
+              _c("h4", { staticClass: "group inner list-group-item-heading" }, [
+                _vm._v("$@" + _vm._s(product.name))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "group inner list-group-item-text" }, [
+                _vm._v("$@" + _vm._s(product.description))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-xs-12 col-md-6" }, [
+                  _c("p", { staticClass: "lead" }, [
+                    _vm._v("$@" + _vm._s(product.price))
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(0, true)
+              ])
+            ])
+          ])
+        ])
+      }),
+      0
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-12 col-md-6" }, [
+      _c("a", { staticClass: "btn btn-success", attrs: { href: "#" } }, [
+        _vm._v("Add to cart")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3f477b7e", module.exports)
+  }
+}
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./components/AlgoliaSearch.vue": 16,
+	"./components/ChatForm.vue": 14,
+	"./components/ChatMessages.vue": 15,
+	"./components/ExampleComponent.vue": 13
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 56;
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
