@@ -2,11 +2,12 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
-
 class CompanyProduct extends Model
 {
-    
+    use Searchable;
+
     // if you want to make all attributes mass assignable
     protected $guarded = [];
 
