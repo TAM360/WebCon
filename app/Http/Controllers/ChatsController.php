@@ -10,7 +10,7 @@ class ChatsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -20,7 +20,7 @@ class ChatsController extends Controller
      */
     public function index()
     {
-        return view('chat');
+        return view('chats');
     }
 
     /**
