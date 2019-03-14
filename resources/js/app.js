@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -16,12 +17,13 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('chat-form', require('./components/ChatForm.vue'));
 Vue.component('chat-messages', require('./components/ChatMessages.vue'));
 Vue.component('algolia-search', require('./components/AlgoliaSearch.vue'));
 
 const files = require.context('./', true, /\.vue$/i)
+const axios = require('axios');
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
 
 const newLocal = '#vue-app';
@@ -32,5 +34,41 @@ const newLocal = '#vue-app';
  */
 
 const app = new Vue({
-    el: newLocal
+    el: newLocal,
+
+    data: {
+        messages: []
+    },
+
+    created() {
+        this.fetchMessages();
+
+        Echo.private('chat').listen('MessageSent', (e) => {
+                this.messages.push({
+                message: e.message.message,
+                user: e.user
+            });
+        });
+
+    },
+    methods: {
+        addMessage(message) {
+            this.messages.push(message);
+            
+            axios.post('text', {
+                "message": message,
+            }).then(response => {
+                console.log(response.data);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        fetchMessages() {
+            axios.get('/texts').then(response => {
+                this.messages = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });;
+        }
+    }
 });

@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Message;
+use App\Events\MessageSent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PHPUnit\Runner\Exception;
 
 class ChatsController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -20,7 +22,7 @@ class ChatsController extends Controller
      */
     public function index()
     {
-        return view('chats');
+    return view('chats');
     }
 
     /**
@@ -41,11 +43,14 @@ class ChatsController extends Controller
      */
     public function sendMessage(Request $request)
     {
-        $user = Auth::user();
+        $user = auth()->user();
+
         $message = $user->messages()->create([
-            'message' => $request->input('message')
+            'message' => $request->input("message")["message"]
         ]);
+
         broadcast(new MessageSent($user, $message))->toOthers();
+
         return ['status' => 'Message Sent!'];
     }
 }

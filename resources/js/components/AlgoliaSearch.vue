@@ -23,11 +23,11 @@
                 <div class="thumbnail">
                     <img class="group list-group-image" :src="product.image_url" :alt="product.name" />
                     <div class="caption">
-                        <h4 class="group inner list-group-item-heading">$@{{ product.name }}</h4>
-                        <p class="group inner list-group-item-text">$@{{ product.description }}</p>
+                        <h4 class="group inner list-group-item-heading">{{ product.name }}</h4>
+                        <p class="group inner list-group-item-text">{{ product.description }}</p>
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
-                                <p class="lead">$@{{ product.price }}</p>
+                                <p class="lead">{{ product.price }}</p>
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 <a class="btn btn-success" href="#">Add to cart</a>

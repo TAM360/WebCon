@@ -17,9 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/edit', function () {
-    return view('auth.edit');
-});
+// Route::get('/edit', function () {
+//     return view('auth.edit');
+// });
 
 Route::get('/search', 'SearchProductsController@index');
 Route::get('/item', function () {
@@ -29,9 +29,15 @@ Route::get('/filter', 'SearchProductsController@searchByFilter')->name('filter')
 Route::get('/algolia/search', 'SearchProductsController@searchByAlgolia');
 Route::get('/algolia','SearchProductsController@algolia' );
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('messages', 'ChatsController@index')->name('chats');
+
+Route::get('/messages', 'ChatsController@index');
+Route::get('/texts', 'ChatsController@fetchMessages');
+Route::post('/text', 'ChatsController@sendMessage');
 
 Route::get("insert", 'UploadProject@index');
 Route::get("project", 'UploadProject@show');
 Route::post("store", 'UploadProject@store');
 Route::post("setbid", 'BidingController@store');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
