@@ -8,7 +8,13 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Scripts -->
+    <script src="{{ mix('/js/app.js') }}" defer></script>
+
+    <!-- Styles -->
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -353,13 +359,14 @@
                                 </form>
                             </div>
 
-                            <div class="col-md-10" style="text-align:center">
+                            <div id="vue-app" class="col-md-10" style="text-align:center">
                                 <h3>Products</h3>
-                                <div class="row" style="margin-left:10px;">
+                                {{-- <div class="row" style="margin-left:10px;">
                                     @foreach ($products as $product) 
                                         @include('layouts.home.shopItems')
                                     @endforeach                                           
-                                </div>  
+                                </div>   --}}
+                                <algolia-search></algolia-search>
                             </div>
                         </div>
                     </div>

@@ -23,11 +23,11 @@
                 <div class="thumbnail">
                     <img class="group list-group-image" :src="product.image_url" :alt="product.name" />
                     <div class="caption">
-                        <h4 class="group inner list-group-item-heading">$@{{ product.name }}</h4>
-                        <p class="group inner list-group-item-text">$@{{ product.description }}</p>
+                        <h4 class="group inner list-group-item-heading">{{ product.name }}</h4>
+                        <p class="group inner list-group-item-text">{{ product.description }}</p>
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
-                                <p class="lead">$@{{ product.price }}</p>
+                                <p class="lead">{{ product.price }}</p>
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 <a class="btn btn-success" href="#">Add to cart</a>
@@ -61,16 +61,16 @@ export default {
             this.loading = true;
 
             // Making a get request to our API and passing the query to it.
-            await axios.get('http://localhost:8000/algolia/search?q=' + this.query).then((response) => {
+            await axios.get('/algolia/search?q=' + this.query).then((response) => {
                 console.log(response.data);
-                // If there was an error set the error message, if not fill the products array.
+                
                 response.data.error ? this.error = response.data.error : this.products = response.data;
-                // The request is finished, change the loading to false again.
+                
                 this.loading = false;
-                // Clear the query.
+
                 this.query = '';
             }).catch(function (error) {
-                // handle error
+
                 console.log(error);
             });
         }
