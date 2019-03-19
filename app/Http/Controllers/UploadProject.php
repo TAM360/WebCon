@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Request;
-
-
-use App\Http\Requests;
-use App\clientproject;
+use App\UserProject;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class UploadProject extends Controller
 {
@@ -39,20 +37,13 @@ class UploadProject extends Controller
      */
     public function store(Request $request)
     {
-    /*    $this->validate($request,
-            ['description' => 'required', 'price' =>'required', 'project_title' => 'required']);
-        
-            $uploadpro = new UploadPro ([
-
-            'description' => $request->get('description'),
+        UserProject::create([
+            'user_id' => Auth::user()->id,
+            'project_description' => $request->get('description'),
             'price' => $request->get('price'),
             'project_title' => $request->get('project_title')
-        ]);*/
-
-        clientproject::create(Request::all());
-        return view('welcome');
-
-        
+        ]);
+        return view('projects', ['clientproject' => UserProject::all()]);
     }
 
     /**
@@ -63,8 +54,7 @@ class UploadProject extends Controller
      */
     public function show()
     {
-        //
-        $clientproject = clientproject::all();
+        $clientproject = UserProject::all();
         return view('projects',['clientproject'=>$clientproject]);
     }
 

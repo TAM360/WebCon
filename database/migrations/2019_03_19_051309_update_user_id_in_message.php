@@ -14,7 +14,7 @@ class UpdateUserIdInMessage extends Migration
     public function up()
     {
         Schema::table('messages', function (Blueprint $table) {
-            $table->integer('user_id_two')->after('user_id');
+            $table->integer('user_id_two')->after('user_id')->nullable();
         });
     }
 

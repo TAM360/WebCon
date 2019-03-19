@@ -59282,7 +59282,7 @@ var render = function() {
     "ul",
     { staticClass: "chat" },
     _vm._l(_vm.messages, function(message) {
-      return _c("li", { staticClass: "left clearfix" }, [
+      return _c("div", { staticClass: "left clearfix" }, [
         _c("div", { staticClass: "chat-body clearfix" }, [
           _c("div", { staticClass: "header" }, [
             _c("strong", { staticClass: "primary-font" }, [
@@ -59399,16 +59399,16 @@ var axios = __webpack_require__(3);
 
                                 // Making a get request to our API and passing the query to it.
                                 _context.next = 5;
-                                return axios.get('http://localhost:8000/algolia/search?q=' + this.query).then(function (response) {
+                                return axios.get('/algolia/search?q=' + this.query).then(function (response) {
                                     console.log(response.data);
-                                    // If there was an error set the error message, if not fill the products array.
+
                                     response.data.error ? _this.error = response.data.error : _this.products = response.data;
-                                    // The request is finished, change the loading to false again.
+
                                     _this.loading = false;
-                                    // Clear the query.
+
                                     _this.query = '';
                                 }).catch(function (error) {
-                                    // handle error
+
                                     console.log(error);
                                 });
 

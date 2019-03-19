@@ -35,66 +35,29 @@
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
-                    @else
+                        @else
                         <li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-22 current_page_item menu-item-178">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{-- <a href="{{route("home")}}">
                                 {{ Auth::user()->name }} <span class="caret"></span>
+                            </a> --}}
+                            <a  href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
                             </a>
-                            {{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-    
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div> --}}
-                        </li>
-                        <li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-22 current_page_item menu-item-178">
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-        
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </li>
                     @endguest
                     <li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-22 current_page_item menu-item-178">
-                        <a href="{{url('search')}}">Search</a>
-                    </li> 
-                    <li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-22 current_page_item menu-item-178">
-                        <a href="#">Contact Us</a>
-                    </li> 
+                            <a href="{{url('search')}}">Search</a>
+                        </li> 
+                        <li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-22 current_page_item menu-item-178">
+                            <a href="#">Contact Us</a>
+                        </li> 
                 </ul>
         </div>
-        {{--
-        <div class="search-toggle">
-            <a href="javascript:void(0)" class="search-icon"><i class="fa fa-search"></i></a>
-            <div class="ak-search">
-                <form role="search" method="get" class="search-form" action="https://demo.accesspressthemes.com/construction/">
-                    <label>
-                            <span class="screen-reader-text">Search for:</span>
-                            <input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
-                        </label>
-                    <input type="submit" class="search-submit" value="Search" />
-                </form>
-            </div>
-        </div>
-        <div class="header-cart-search">
-            <div class="cart-list-wrap">
-                <a href="https://demo.accesspressthemes.com/construction/cart/" class="cart-fa-icon">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        <span class="cart-count">0</span>
-                    </a>
-            </div>
-        </div> --}}
     </nav>
-    <!-- #site-navigation -->
 </div>
