@@ -112,7 +112,7 @@
        }
    </style>
     <div class="signup-form">
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}" enctype='multipart/form-data'>
                     @csrf
                 <h2>Create an Account</h2>
                 <p class="hint-text">Sign up with your social media account or email address</p>
@@ -138,6 +138,13 @@
                             <strong>{{ $errors->first('email') }}</strong>
                         </span>
                     @endif
+                </div>
+                {{-- Image upload --}}
+                <div class="form-group">
+                        <input type="file" name="image_name" class="form-control" id="name" value="">
+                        @if($errors->has('image_name'))
+                            <span class="help-block">{{ $errors->first('image_name') }}</span>
+                        @endif
                 </div>
                 <div class="form-group">
                     <input id="password" placeholder="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
