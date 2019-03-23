@@ -41,3 +41,8 @@ Route::get("/insert", 'UploadProject@index');
 Route::get("/project", 'UploadProject@show');
 Route::post("/store", 'UploadProject@store');
 Route::post("/setbid", 'BidingController@store');
+
+// add products
+Route::get("/products/add", "AddProductsController@index");
+Route::post("/products/new", "AddProductsController@store")->name('new_product');
+

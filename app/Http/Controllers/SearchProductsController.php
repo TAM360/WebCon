@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CompanyProduct;
+
 use Log;
 
 class SearchProductsController extends Controller
