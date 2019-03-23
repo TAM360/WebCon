@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Cloudder;
+use Log;
 
 class AddProductsController extends Controller
 {
@@ -22,7 +23,23 @@ class AddProductsController extends Controller
         if (Auth::user()->category == "company")
             return view('addItem');
         else 
-            return view('home'); 
+            return redirect()->route('home');
+    }
+    
+    public function showAllProducts() 
+    {
+        if (Auth::user()->category == "company") 
+        {
+            $products = CompanyProduct::where('company_id', Auth::user()->id)->get();
+            if ($products->isEmpty()) 
+                return redirect()->route('home');
+            else
+                return view('companyItems', ['products' => $products]);
+        } 
+        else 
+        {
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -119,7 +136,17 @@ class AddProductsController extends Controller
     {
         if (Auth::user()->category != "company")
             return view('home');
-        
+        else 
+        {
+            
+            $input = collect($request->all())->filter(function($value) {
+                return null !== $value;
+            })->toArray();            
+
+            if (count($input) > 1)
+                CompanyProduct::where('id', $id)->update($request->except('_token'));
+            return redirect()->route('all_products');
+        }
     }
 
     /**
@@ -130,6 +157,27 @@ class AddProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try 
+        {
+            if (Auth::user()->category != "company")
+                return view('home');
+            else 
+                CompanyProduct::destroy($id);
+               
+        } 
+        catch (\GuzzleHttp\Exception\ConnectException $e) 
+        {
+            // log the error here
+    
+            Log::Warning('guzzle_connect_exception', [
+                    'url' => "/products/destroy/{$id}",
+                    'message' => $e->getMessage()
+            ]);
+            
+        }
+        finally 
+        {
+            return redirect()->route('all_products');
+        }
     }
 }
