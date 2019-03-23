@@ -139,12 +139,21 @@
                         </span>
                     @endif
                 </div>
+
+                <div class="form-group">
+                    <div class="radio">
+                        <label>Category: </label>
+                        <label class="radio-inline"><input type="radio" name="category" value="customer">Customer</label>
+                        <label class="radio-inline"><input type="radio" name="category" value="company">Company</label>
+                    </div>
+                    <span class="help-block">{{ $errors->first('category') }}</span>
+                </div>
                 {{-- Image upload --}}
                 <div class="form-group">
-                        <input type="file" name="image_name" class="form-control" id="name" value="">
-                        @if($errors->has('image_name'))
-                            <span class="help-block">{{ $errors->first('image_name') }}</span>
-                        @endif
+                    <input type="file" name="image_name" class="form-control" id="name" value="">
+                    @if($errors->has('image_name'))
+                        <span class="help-block">{{ $errors->first('image_name') }}</span>
+                    @endif
                 </div>
                 <div class="form-group">
                     <input id="password" placeholder="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
