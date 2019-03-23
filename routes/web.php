@@ -45,4 +45,6 @@ Route::post("/setbid", 'BidingController@store');
 // add products
 Route::get("/products/add", "AddProductsController@index");
 Route::post("/products/new", "AddProductsController@store")->name('new_product');
-
+Route::get("products/all", "AddProductsController@showAllProducts")->name('all_products');
+Route::get("/products/destroy/{id}", "AddProductsController@destroy");
+Route::post("/products/update/{id}", "AddProductsController@update")->name('update_product');
