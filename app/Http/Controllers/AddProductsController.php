@@ -19,7 +19,10 @@ class AddProductsController extends Controller
      */
     public function index()
     {
-        return view('addItem');
+        if (Auth::user()->category == "company")
+            return view('addItem');
+        else 
+            return view('home'); 
     }
 
     /**
@@ -42,6 +45,9 @@ class AddProductsController extends Controller
     {
         // dd($request->all());
         // TODO: catch cURL error 28 exception.
+        if (Auth::user()->category != "company")
+            return view('home');
+
         $error = ['error' => 'error! all field must be filled'];
         $data = $request->all();
 
@@ -55,8 +61,6 @@ class AddProductsController extends Controller
             
         }
 
-       
-
         $validate = Validator::make($data, [
             'company_id' => ['required', 'integer'],
             'name' => ['require', 'string'],
@@ -66,8 +70,6 @@ class AddProductsController extends Controller
             'image_url' => ['required', 'string'],
         ]);
         
-        
-
         if ($validate) 
         {
             CompanyProduct::create([
@@ -115,7 +117,9 @@ class AddProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (Auth::user()->category != "company")
+            return view('home');
+        
     }
 
     /**
