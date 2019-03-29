@@ -52,7 +52,7 @@ export default {
         }
     },
     methods: {
-       async search() {
+        search() {
             // Clear the error message.
             this.error = '';
             // Empty the products array so we can fill it with the new products.
@@ -61,7 +61,7 @@ export default {
             this.loading = true;
 
             // Making a get request to our API and passing the query to it.
-            await axios.get('/algolia/search?q=' + this.query).then((response) => {
+             axios.get('/algolia/search?q=' + this.query).then((response) => {
                 console.log(response.data);
                 
                 response.data.error ? this.error = response.data.error : this.products = response.data;
