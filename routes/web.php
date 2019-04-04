@@ -51,3 +51,16 @@ Route::post("/products/new", "AddProductsController@store")->name('new_product')
 Route::get("products/all", "AddProductsController@showAllProducts")->name('all_products');
 Route::get("/products/destroy/{id}", "AddProductsController@destroy");
 Route::post("/products/update/{id}", "AddProductsController@update")->name('update_product');
+
+//Cost estimation
+/*
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('index','CostController@index');
+
+Route::get('store','CostController@store');
+
+Route::get('store1','CostController@store1');
+*/
