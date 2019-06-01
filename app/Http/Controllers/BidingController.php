@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Request;
+// use Request;
 
-
-use App\Http\Requests;
-use App\biding;
+use Auth;
+use Illuminate\Http\Request;
+use App\Bidding;
 
 class BidingController extends Controller
 {
+    protected $i = 0; 
     /**
      * Display a listing of the resource.
      *
@@ -38,8 +39,16 @@ class BidingController extends Controller
      */
     public function store(Request $request)
     {
-        biding::create(Request::all());
-        return 'Bid added Successfully';
+        // dd(Request::all());
+        // biding::create(Request::all())
+        Bidding::create([
+            'company_id' => Auth::id(),
+            'project_id' => $this->i,
+            'bidding_description' => 'sample description',
+            'status', 'none',
+            'price' =>  $request->get('price')
+        ]);
+        return redirect('home'); 
     }
 
     /**

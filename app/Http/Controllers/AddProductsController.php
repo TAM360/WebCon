@@ -20,6 +20,7 @@ class AddProductsController extends Controller
      */
     public function index()
     {
+        // dd(Auth::user()->category);
         if (Auth::user()->category == "company")
             return view('addItem');
         else 

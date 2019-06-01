@@ -112,6 +112,10 @@
 
                     console.log(error);
                 });
+            },
+
+            beforeMounted() {
+                this.products = filters;
             }
         }
     }

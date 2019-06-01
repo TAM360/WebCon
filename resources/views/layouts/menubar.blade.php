@@ -51,6 +51,7 @@
                             </form>
                         </li>
                     @endguest
+
                     <li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-22 current_page_item menu-item-178">
                             <a href="{{url('search')}}">Search</a>
                         </li> 
