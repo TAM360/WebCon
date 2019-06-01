@@ -15,12 +15,25 @@ class SearchProductsController extends Controller
     }
 
     public function searchByFilter(Request $request) {
-        if ($request->category) {
+
+        // dd($request->request);
+        if ($request->category != NULL) 
+        {
             $products = CompanyProduct::where('category', $request->category)->get();
-        } else {
+        }
+        
+        else if ($request->min != NULL && $request->max != NULL)
+        {
+            $products = CompanyProduct::whereBetween('price', [$request->min , $request->max])->get();
+        }
+        
+        else 
+        {
             $products = CompanyProduct::take(20)->get();
         }
-        return view('search')->with('products', $products);
+        // return $products;
+        // dd($products);
+        // return redirect()->to('search')->with('products', $products);
     }
 
     public function algolia()
@@ -38,7 +51,8 @@ class SearchProductsController extends Controller
         // {
             if ($request->has('q'))
             {
-                $products = CompanyProduct::search($request->get('q'))->get();
+                // $products = CompanyProduct::search($request->q)->get();
+                $products = CompanyProduct::where('category', $request->q)->get();
                 return $products;
             }
 

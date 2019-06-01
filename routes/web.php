@@ -52,15 +52,10 @@ Route::get("products/all", "AddProductsController@showAllProducts")->name('all_p
 Route::get("/products/destroy/{id}", "AddProductsController@destroy");
 Route::post("/products/update/{id}", "AddProductsController@update")->name('update_product');
 
-//Cost estimation
-/*
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/cost/index','CostController@index');
+Route::get('/cost/store','CostController@store');
+Route::get('/cost/store1','CostController@store1');
+
+Route::get('/profile/edit', function() {
+    return view('auth.edit');
 });
-
-Route::get('index','CostController@index');
-
-Route::get('store','CostController@store');
-
-Route::get('store1','CostController@store1');
-*/

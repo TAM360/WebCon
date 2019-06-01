@@ -321,7 +321,7 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="col-md-2">
+                            <div class="col-md-2">
                                 <form id="frm1" action="setbid" method='POST'>
                                     {{ csrf_field() }}
                                     <h3 style="color:#FEA100">Enter Bid:</h3>
@@ -329,7 +329,7 @@
                                         style="height:40px">
 
                                 </form>
-                            </div> --}}
+                            </div> 
                         </div>
                         <hr>
                         @endforeach

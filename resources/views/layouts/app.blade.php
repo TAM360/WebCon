@@ -15,6 +15,15 @@
     @include('layouts.header')
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <style>
+    .site-footer {
+        margin-top: 40px;
+        
+    }
+    .site-header {
+        margin-bottom: 20px; 
+    }
+    </style>
 </head>
 <body>
         <header id="masthead" class="site-header" role="banner">

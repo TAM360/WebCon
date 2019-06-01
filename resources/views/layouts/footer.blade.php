@@ -137,7 +137,7 @@
             </div> --}}
     
             <div class="site-info">
-                <div class="ak-container">
+                <div class="ak-container"z>
                     <span class="footer-text">
                             <h2 style="color:white">Contact Us</h2>
                             <div class="footer-info-widget">
