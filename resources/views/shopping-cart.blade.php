@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @include('layouts.header')
 <style>
-body {
+.body {
   font-family: Arial;
   font-size: 17px;
   padding: 8px;
@@ -20,35 +20,14 @@ body {
   display: flex;
   -ms-flex-wrap: wrap; /* IE10 */
   flex-wrap: wrap;
-  margin: 0 -16px;
-}
-
-.col-25 {
-  -ms-flex: 25%; /* IE10 */
-  flex: 25%;
-}
-
-.col-50 {
-  -ms-flex: 50%; /* IE10 */
-  flex: 50%;
-}
-
-.col-75 {
-  -ms-flex: 75%; /* IE10 */
-  flex: 75%;
-}
-
-.col-25,
-.col-50,
-.col-75 {
-  padding: 0 16px;
 }
 
 .container {
   background-color: #f2f2f2;
-  padding: 5px 20px 15px 20px;
+  padding: 9px 27px 29px 44px;
   border: 1px solid lightgrey;
   border-radius: 3px;
+  margin-left: 150px;
 }
 
 input[type=text] {
@@ -110,16 +89,16 @@ span.price {
 }
 </style>
 </head>
-<body>
+<body class="body">
 @include('layouts.menubar')
-<h2>Checkout Form</h2>
+<h2 style="margin-left: 600px;">Checkout Form</h2>
 <div class="row">
-  <div class="col-75">
-    <div class="container">
-      <form action="/action_page.php">
-      
+  <div class="col-lg-12">
+    <div class="container" style="align-items: center">
+      <form action="{{route('pay-online')}}" method="POST">
+        @csrf
         <div class="row">
-          <div class="col-50">
+          <div class="col-5 float-left" style="margin-right: 70px;"> 
             <h3>Billing Address</h3>
             <label for="fname"><i class="fa fa-user"></i> Full Name</label>
             <input type="text" id="fname" name="firstname" placeholder="Saeed Malik" value="{{$name}}">
@@ -131,18 +110,18 @@ span.price {
             <input type="text" id="city" name="city" placeholder="Lahore">
 
             <div class="row">
-              <div class="col-50">
+              <div class="col">
                 <label for="state">State</label>
                 <input type="text" id="state" name="state" placeholder="Punjab">
               </div>
-              <div class="col-50">
+              <div class="col">
                 <label for="zip">Zip</label>
                 <input type="text" id="zip" name="zip" placeholder="54000">
               </div>
             </div>
           </div>
 
-          <div class="col-50">
+          <div class="col-5 float-left" style="margin-right: 70px;">
             <h3>Payment</h3>
             <label for="fname">Accepted Cards</label>
             <div class="icon-container">
@@ -156,39 +135,49 @@ span.price {
             <label for="expmonth">Exp Month</label>
             <input type="text" id="expmonth" name="expmonth" placeholder="September">
             <div class="row">
-              <div class="col-50">
+              <div class="col">
                 <label for="expyear">Exp Year</label>
                 <input type="text" id="expyear" name="expyear" placeholder="2018">
               </div>
-              <div class="col-50">
+              <div class="col">
                 <label for="cvv">CVV</label>
                 <input type="text" id="cvv" name="cvv" placeholder="352">
               </div>
             </div>
           </div>
-          
+          <div class="col-2 float-right">
+              <h4>Cart <span class="price" style="color:black; border:"><i class="fa fa-shopping-cart"></i> <b>{{$total_count}}</b></span></h4>
+                @foreach ($cart_items as $item)
+                  <p>
+                    <a href="#">{{$item->name}}</a>
+                    <span class="price">PKR {{$item->price}}</span>
+                  </p>
+                @endforeach
+                <hr>
+                <p>Total: <span class="price" style="color:black"><b>PKR {{$total_price}}</b></span></p>
+          </div>
         </div>
-        {{-- <label>
-          <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-        </label> --}}
-        <input type="submit" value="Continue to checkout" class="btn">
+        <input type="submit" value="Submit Payment" class="btn btn-primary">
       </form>
-    </div>
-  </div>
-  <div class="col-25">
-    <div class="container">
-      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>{{$total_count}}</b></span></h4>
-      @foreach ($cart_items as $item)
-        <p>
-          <a href="#">{{$item->name}}</a>
-          <span class="price">PKR {{$item->price}}</span>
-        </p>
-      @endforeach
-      <hr>
-      <p>Total <span class="price" style="color:black"><b>PKR {{$total_price}}</b></span></p>
     </div>
   </div>
 </div>
 @include('layouts.footer')
+
+{{-- <script src="https://js.stripe.com/v3/"></script>
+<script>
+  var stripe = Stripe('pk_test_gjRsTaL3ucYXw6MbgLFrKEdk00AEkmjJlL');
+
+    stripe.redirectToCheckout({
+    // Make the id field from the Checkout Session creation API response
+    // available to this file, so you can provide it as parameter here
+    // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+    sessionId: '{{CHECKOUT_SESSION_ID}}'
+  }).then(function (result) {
+    // If `redirectToCheckout` fails due to a browser or network
+    // error, display the localized error message to your customer
+    // using `result.error.message`.
+  });
+</script> --}}
 </body>
 </html>

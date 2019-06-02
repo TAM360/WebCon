@@ -126,4 +126,24 @@ class ShoppingCartController extends Controller
             'email' => Auth::user()->email,
         ]);
     }
+
+    public function onlinePayment($request) {
+        \Stripe\Stripe::setApiKey('sk_test_nq1jzIBEK5oBBo9exYFZsxtd00zPW5qN08');
+
+        $session = \Stripe\Checkout\Session::create([
+          'payment_method_types' => ['card'],
+          'line_items' => [[
+            'name' => 'T-shirt',
+            'description' => 'Comfortable cotton t-shirt',
+            'images' => ['https://example.com/t-shirt.png'],
+            'amount' => 500,
+            'currency' => 'usd',
+            'quantity' => 1,
+          ]],
+          'success_url' => 'https://localhost:8000/search',
+        //   'cancel_url' => 'https://example.com/cancel',
+        ]);
+        dd($session);
+    }
+       
 }

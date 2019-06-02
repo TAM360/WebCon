@@ -18,7 +18,8 @@
         "laravel/scout": "^6.1",
         "laravel/socialite": "^4.0",
         "laravel/tinker": "^1.0",
-        "pusher/pusher-php-server": "^3.3"
+        "pusher/pusher-php-server": "^3.3",
+        "stripe/stripe-php": "^6.37"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
