@@ -33,7 +33,7 @@ class SearchProductsController extends Controller
         }
         // return $products;
         // dd($products);
-        // return redirect()->to('search')->with('products', $products);
+        return redirect()->to('search')->with('products', $products);
     }
 
     public function algolia()

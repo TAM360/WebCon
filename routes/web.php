@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\ShoppingCartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Route::get('/', function () {
 // product searching routes
 Route::get('/search', 'SearchProductsController@index');
 Route::get('/filter', 'SearchProductsController@searchByFilter')->name('filter');
-Route::get('/algolia/search', 'SearchProductsController@searchByAlgolia');
+Route::get('/algolia/search', 'SearchProductsController@searchByAlgolia')->name('algoliaSearch');
 Route::get('/algolia','SearchProductsController@algolia' );
 
 // individual item route 
@@ -58,7 +59,11 @@ Route::get('/cost/store1','CostController@store1');
 
 // cart routes
 Route::get('/cart', 'ShoppingCartController@index');
+Route::get('/cart/checkout', 'ShoppingCartController@checkout')->name('checkout');
 Route::post('/cart/add', 'ShoppingCartController@store')->name('cart-item');
+Route::delete('/cart/destroy', "ShoppingCartController@destroy")->name("destroy-cart");
+
+
 
 Route::get('/profile/edit', function() {
     return view('auth.edit');

@@ -59373,9 +59373,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 var axios = __webpack_require__(3);
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -59423,6 +59420,7 @@ var axios = __webpack_require__(3);
             var _this2 = this;
 
             this.status = '';
+            this.error = false;
 
             axios.post('/cart/add', {
                 name: item.name,
@@ -59435,12 +59433,14 @@ var axios = __webpack_require__(3);
                 _this2.status = response.data.success_message;
             }).catch(function (error) {
                 console.log(error);
+                _this2.error = true;
                 _this2.status = 'Item submission failed. Try again!';
             });
         },
         checkOut: function checkOut() {
             axios.get('/cart/checkout', {}).then(function (response) {
-                console.log(response);
+                alert(response.data.cart_items);
+                // window.location.href = response.data;           
             }).catch(function (error) {
                 console.log(error);
             });
@@ -59464,6 +59464,14 @@ var render = function() {
       "div",
       { staticClass: "col", attrs: { id: "products" } },
       [
+        _vm.status
+          ? _c(
+              "span",
+              { staticClass: "alert alert-primary", attrs: { role: "alert" } },
+              [_vm._v(_vm._s(_vm.status))]
+            )
+          : _vm._e(),
+        _vm._v(" "),
         _c("div", { staticClass: "input-group mb-3" }, [
           _c("div", { staticClass: "input-group-prepend" }, [
             !_vm.loading
@@ -59558,41 +59566,7 @@ var render = function() {
                           "p",
                           { attrs: { description: product.description } },
                           [_vm._v(" " + _vm._s(product.description) + " ")]
-                        ),
-                        _vm._v(" "),
-                        _vm.error
-                          ? _c(
-                              "span",
-                              {
-                                staticClass: "alert alert-danger",
-                                attrs: { role: "alert" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                    " +
-                                    _vm._s(_vm.error) +
-                                    "\n                                "
-                                )
-                              ]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.status
-                          ? _c(
-                              "span",
-                              {
-                                staticClass: "alert alert-success",
-                                attrs: { role: "alert" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                   " +
-                                    _vm._s(_vm.status) +
-                                    "\n                                "
-                                )
-                              ]
-                            )
-                          : _vm._e()
+                        )
                       ]),
                       _vm._v(" "),
                       _c("aside", { staticClass: "col-sm-3" }, [
@@ -59627,12 +59601,9 @@ var render = function() {
                             _c(
                               "a",
                               {
-                                staticClass: "btn btn-primary",
-                                attrs: { href: "#" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.checkOut()
-                                  }
+                                staticClass: "btn btn-success",
+                                attrs: {
+                                  href: "http://localhost:8000/cart/checkout/"
                                 }
                               },
                               [_vm._v("Checkout")]

@@ -2,10 +2,12 @@
     <div class="row">
           
         <div id="products" class="col">
+            <span class="alert alert-primary" role="alert" v-if="status">{{ status }}</span>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <a class="btn btn-secondary" @click="search()" v-if="!loading">Search</a>
                     <a class="btn btn-secondary" disabled="disabled"  v-if="loading">Searching...</a>
+                    
                 </div>
                 <input type="text" @keyup.enter="search()"  placeholder="Paints, Cements, Tiles etc" class="form-control"  v-model="query">
             </div>
@@ -26,12 +28,7 @@
                                         </ul>
                                     </div> 
                                     <p :description="product.description"> {{ product.description }} </p>
-                                    <span class="alert alert-danger" role="alert" v-if="error">
-                                        {{ error }}
-                                    </span>
-                                    <span class="alert alert-success" role="alert" v-if="status">
-                                       {{ status }}
-                                    </span>
+
                                 </article> <!-- col.// -->
                                 <aside class="col-sm-3">
                                     <div class="action-wrap">
@@ -41,7 +38,7 @@
                                         <br>
                                         <slot></slot>
                                         <a href="#" @click="addToCart(product)" class="btn btn-primary">Add to Cart</a>
-                                        <a href="#" @click="checkOut()" class="btn btn-primary">Checkout</a>
+                                        <a href="http://localhost:8000/cart/checkout/" class="btn btn-success">Checkout</a>
                                     </div>
                                 </aside> 
                             </div>
@@ -95,6 +92,7 @@
             },
             addToCart(item) {
                 this.status = '';
+                this.error = false;
 
                 axios.post('/cart/add', {
                     name: item.name,
@@ -107,6 +105,7 @@
                     this.status = response.data.success_message;              
                 }).catch(error => {
                     console.log(error)
+                    this.error = true;
                     this.status = 'Item submission failed. Try again!'
                 })
             },
@@ -114,7 +113,8 @@
             checkOut() {
                 axios.get('/cart/checkout', {
                 }).then(response => {
-                    console.log(response)           
+                    alert(response.data.cart_items)
+                    // window.location.href = response.data;           
                 }).catch(error => {
                     console.log(error)
                 })

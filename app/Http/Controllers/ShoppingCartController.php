@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Hash;
-Use App\User;
+use App\User;
+use Auth;
 
 class ShoppingCartController extends Controller
 {
@@ -38,32 +39,35 @@ class ShoppingCartController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::user()->identifier) {
-            Cart::instance(Auth::user()->identifier)::add([
-                'id' => $request->id,
-                'name' => $request->name,
-                'description' => $request->description,
-                'price' => (double)$request->price,
-                'url' => $request->url,
-                'qty' => 1
-            ])
-            ->associate('App\CompanyProduct');
+        if (Auth::check()) {
+            if (Auth::user()->identifier) {
+                Cart::instance(Auth::user()->identifier)->add([
+                    'id' => $request->id,
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'price' => (double)$request->price,
+                    'url' => $request->url,
+                    'qty' => 1
+                ])
+                ->associate('App\CompanyProduct');
+            } else {
+                $identifier = Hash::make(Faker::create()->name);
+                Cart::instance($identifier)->add([
+                    'id' => $request->id,
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'price' => (double)$request->price,
+                    'url' => $request->url,
+                    'qty' => 1
+                ])
+                ->associate('App\CompanyProduct');
+    
+                User::where('id', Auth::user()->id)->update(['identifier' => $identifier]);
+            }
+            return ['success_message' => 'item has been added in cart.'];
         } else {
-            $identifier = Hash::make(Faker::create()->name);
-            Cart::instance($identifier)::add([
-                'id' => $request->id,
-                'name' => $request->name,
-                'description' => $request->description,
-                'price' => (double)$request->price,
-                'url' => $request->url,
-                'qty' => 1
-            ])
-            ->associate('App\CompanyProduct');
-
-            User::where('id', Auth::user()->id)->update(['identifier' => $identifier]);
-
+            return ['success_message' => 'login before adding items to carts.'];
         }
-        return ['success_message' => 'item has been added in cart.'];
     }
 
     /**
@@ -108,10 +112,18 @@ class ShoppingCartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Cart::instance($id)->destroy();
+        User::where('id', Auth::user()->id)->update(['identifier' => ""]);
+        return ['success_message' => 'cart session has been emptied.'];
     }
 
     public function checkout() {
-        redirect('shopping-cart');
+        return view('shopping-cart')->with([
+            'cart_items' => Cart::instance(Auth::user()->identifier)->content(),
+            'total_count' => Cart::instance(Auth::user()->identifier)->count(),
+            'total_price' => Cart::instance(Auth::user()->identifier)->total(),
+            'name' => Auth::user()->name,
+            'email' => Auth::user()->email,
+        ]);
     }
 }
