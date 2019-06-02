@@ -27,7 +27,7 @@
   padding: 9px 27px 29px 44px;
   border: 1px solid lightgrey;
   border-radius: 3px;
-  margin-left: 150px;
+  margin-left: 353px;
 }
 
 input[type=text] {
@@ -95,7 +95,7 @@ span.price {
 <div class="row">
   <div class="col-lg-12">
     <div class="container" style="align-items: center">
-      <form action="{{route('pay-online')}}" method="POST">
+      <form action="/cart/payment" method="POST" id="payment-form">
         @csrf
         <div class="row">
           <div class="col-5 float-left" style="margin-right: 70px;"> 
@@ -106,22 +106,20 @@ span.price {
             <input type="text" id="email" name="email" placeholder="mail@email.com" value="{{$email}}">
             <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
             <input type="text" id="adr" name="address" placeholder="Street 2, B Block Faisal Town ">
-            <label for="city"><i class="fa fa-institution"></i> City</label>
-            <input type="text" id="city" name="city" placeholder="Lahore">
 
             <div class="row">
               <div class="col">
+                <label for="city"><i class="fa fa-institution"></i> City</label>
+                <input type="text" id="city" name="city" placeholder="Lahore" value="Lahore">
                 <label for="state">State</label>
-                <input type="text" id="state" name="state" placeholder="Punjab">
-              </div>
-              <div class="col">
-                <label for="zip">Zip</label>
-                <input type="text" id="zip" name="zip" placeholder="54000">
+                <input type="text" id="state" name="state" placeholder="Punjab" value="Punjab">
               </div>
             </div>
           </div>
-
-          <div class="col-5 float-left" style="margin-right: 70px;">
+          <input type="hidden" name="items" value={{$cart_items}}>
+          <input type="hidden" name="total_price" value={{$total_price}}>
+          <input type="hidden" name="total_count" value={{$total_count}}>          
+          <div class="col-7 float-right" style="margin-right: 70px; padding-left: 50px;">
             <h3>Payment</h3>
             <label for="fname">Accepted Cards</label>
             <div class="icon-container">
@@ -129,55 +127,74 @@ span.price {
               <i class="fa fa-cc-mastercard" style="color:red;"></i> 
             </div>
             <label for="cname">Name on Card</label>
-            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-            <label for="ccnum">Credit card number</label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-            <label for="expmonth">Exp Month</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September">
-            <div class="row">
-              <div class="col">
-                <label for="expyear">Exp Year</label>
-                <input type="text" id="expyear" name="expyear" placeholder="2018">
+            <input type="text" id="cname" name="cardname" placeholder="John More Doe" value="{{$name}}">
+              <div id="card-element">
+                <!-- A Stripe Element will be inserted here. -->
               </div>
-              <div class="col">
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352">
+              <!-- Used to display Element errors. -->
+              <div id="card-errors" role="alert"></div>
+              <hr>
+              <div>
+                  <h4>Cart <span class="price" style="color:black;"><i class="fa fa-shopping-cart"></i> <b>{{$total_count}}</b></span></h4>
+                  @foreach ($cart_items as $item)
+                    <p>
+                      <a href="{{route('remove-item')}}?rowId={{$item->rowId}}">&#x2715;</a>
+                      {{$item->name}}
+                      <span class="price">PKR {{$item->price}}</span>
+                    </p>
+                    <input type="hidden" name="rowId" value="{{$item->rowId}}">
+                  @endforeach
+                  <hr>
+                  <p>Total: <span class="price" style="color:black"><b>PKR {{$total_price}}</b></span></p>
               </div>
-            </div>
           </div>
           <div class="col-2 float-right">
-              <h4>Cart <span class="price" style="color:black; border:"><i class="fa fa-shopping-cart"></i> <b>{{$total_count}}</b></span></h4>
-                @foreach ($cart_items as $item)
-                  <p>
-                    <a href="#">{{$item->name}}</a>
-                    <span class="price">PKR {{$item->price}}</span>
-                  </p>
-                @endforeach
-                <hr>
-                <p>Total: <span class="price" style="color:black"><b>PKR {{$total_price}}</b></span></p>
-          </div>
         </div>
-        <input type="submit" value="Submit Payment" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
 </div>
-@include('layouts.footer')
+{{-- @include('layouts.footer') --}}
 
-{{-- <script src="https://js.stripe.com/v3/"></script>
+<script src="https://js.stripe.com/v3/"></script>
 <script>
   var stripe = Stripe('pk_test_gjRsTaL3ucYXw6MbgLFrKEdk00AEkmjJlL');
+  var elements = stripe.elements();
+  var card = elements.create('card');
 
-    stripe.redirectToCheckout({
-    // Make the id field from the Checkout Session creation API response
-    // available to this file, so you can provide it as parameter here
-    // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-    sessionId: '{{CHECKOUT_SESSION_ID}}'
-  }).then(function (result) {
-    // If `redirectToCheckout` fails due to a browser or network
-    // error, display the localized error message to your customer
-    // using `result.error.message`.
+  // Add an instance of the card Element into the `card-element` <div>.
+  card.mount('#card-element');
+  var form = document.getElementById('payment-form');
+  // alert(form)
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    stripe.createToken(card).then(function(result) {
+      if (result.error) {
+        // Inform the user if there was an error.
+        var errorElement = document.getElementById('card-errors');
+        errorElement.textContent = result.error.message;
+      } else {
+        // Send the token to your server.
+        stripeTokenHandler(result.token);
+      }
+    });
   });
-</script> --}}
+
+  // Submit the form with the token ID.
+  function stripeTokenHandler(token) {
+    // Insert the token ID into the form so it gets submitted to the server
+    var form = document.getElementById('payment-form');
+    var hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+
+    // Submit the form
+    form.submit();
+  };
+</script>
 </body>
 </html>

@@ -13,8 +13,10 @@ class UserTransaction extends Model
     * @var array
     */
     protected $fillable = [
-       'user_id', 'items', 'total_amount', 'total_price', 'stripe_token',
+       'user_id', 'total_amount', 'total_items', 'stripe_token', 'items'
     ];
+
+    // protected $guarded = ['items'];
 
     public function user() 
     {

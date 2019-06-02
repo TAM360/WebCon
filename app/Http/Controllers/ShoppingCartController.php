@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Hash;
+use Cartalyst\Stripe\Stripe;
+use App\UserTransaction;
+
 use App\User;
 use Auth;
-
+use PHPUnit\Framework\Constraint\Exception;
+use Log;
 class ShoppingCartController extends Controller
 {
     /**
@@ -104,6 +108,12 @@ class ShoppingCartController extends Controller
         //
     }
 
+    public function removeItem()
+    {
+        Cart::instance(Auth::user()->identifier)->remove(request()->rowId);
+        return redirect('/cart')->with(['success_message' => 'item has been removed from cart!']);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -127,23 +137,32 @@ class ShoppingCartController extends Controller
         ]);
     }
 
-    public function onlinePayment($request) {
-        \Stripe\Stripe::setApiKey('sk_test_nq1jzIBEK5oBBo9exYFZsxtd00zPW5qN08');
-
-        $session = \Stripe\Checkout\Session::create([
-          'payment_method_types' => ['card'],
-          'line_items' => [[
-            'name' => 'T-shirt',
-            'description' => 'Comfortable cotton t-shirt',
-            'images' => ['https://example.com/t-shirt.png'],
-            'amount' => 500,
-            'currency' => 'usd',
-            'quantity' => 1,
-          ]],
-          'success_url' => 'https://localhost:8000/search',
-        //   'cancel_url' => 'https://example.com/cancel',
-        ]);
-        dd($session);
+    public function onlinePayment(Request $request) {
+        // try {
+            $stripe = Stripe::make(env('STRIPE_KEY'));
+            $stripe->charges()->create([
+                'currency' => 'PKR',
+                'amount'   => $request->total_price,
+                'receipt_email' => $request->email,
+                'source' => $request->stripeToken
+            ]);
+            UserTransaction::create([
+                'user_id' => Auth::user()->id,
+                'items' => 'sample item',
+                'total_amount' => $request->total_price,
+                'total_items' => $request->total_count,
+                'stripe_token' => $request->stripeToken
+            ]);
+            return redirect('/search')->with(['success_message' => 'Your transaction has been completed']);
+        // } 
+        // catch (Exception $e) {
+        //      Log::Warning('exception within shopping cart controller', [
+        //             'url' => $request->fullUrl(),
+        //             'message' => $e->getMessage()
+        //     ]);
+        //     return redirect('checkout')->with(['error_message' => $e->getMessage()]);
+        // }
+        
     }
        
 }

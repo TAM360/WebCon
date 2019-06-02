@@ -62,6 +62,7 @@ Route::get('/cart', 'ShoppingCartController@index');
 Route::get('/cart/checkout', 'ShoppingCartController@checkout')->name('checkout');
 Route::post('/cart/add', 'ShoppingCartController@store')->name('cart-item');
 Route::post('/cart/payment', "ShoppingCartController@onlinePayment")->name("pay-online");
+Route::get('/cart/remove/item', "ShoppingCartController@removeItem")->name('remove-item');
 Route::delete('/cart/destroy', "ShoppingCartController@destroy")->name("destroy-cart");
 
 Route::get('/profile/edit', function() {
