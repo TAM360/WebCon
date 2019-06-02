@@ -51,8 +51,8 @@ class SearchProductsController extends Controller
         // {
             if ($request->has('q'))
             {
-                // $products = CompanyProduct::search($request->q)->get();
-                $products = CompanyProduct::where('category', $request->q)->get();
+                $products = CompanyProduct::search($request->q)->get();
+                // $products = CompanyProduct::where('category', $request->q)->get();
                 return $products;
             }
 
