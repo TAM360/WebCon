@@ -12,6 +12,7 @@
         "algolia/algoliasearch-client-php": "^1.27",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
+        "hardevine/shoppingcart": "2.6.2.1",
         "jrm2k6/cloudder": "0.4.*",
         "laravel/framework": "5.7.*",
         "laravel/scout": "^6.1",

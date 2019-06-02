@@ -56,6 +56,10 @@ Route::get('/cost/index','CostController@index');
 Route::get('/cost/store','CostController@store');
 Route::get('/cost/store1','CostController@store1');
 
+// cart routes
+Route::get('/cart', 'ShoppingCartController@index');
+Route::post('/cart/add', 'ShoppingCartController@store')->name('cart-item');
+
 Route::get('/profile/edit', function() {
     return view('auth.edit');
 });

@@ -10,70 +10,47 @@
                 <input type="text" @keyup.enter="search()"  placeholder="Paints, Cements, Tiles etc" class="form-control"  v-model="query">
                 <div class="alert alert-danger" role="alert" v-if="error">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    @{{ error }}
+                    {{ error }}
+                </div>
+                <div class="alert alert-success" role="alert" v-if="status">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true">
+                        {{ status }}
+                    </span>
                 </div>
             </div>
 
             <div v-for="(product, key) in products" :key="key">
-                
-                <article class="card card-product input-group mb-3">
-                    <div class="card-body">
-                        <div class="row">
-                            <aside class="col-sm-3">
-                                <div class="img-wrap"><img :src="product.image_url" :alt="product.name"></div>
-                            </aside> 
-                            <article class="col-sm-6">
+                <form action="#" method="post">
+                    <article class="card card-product input-group mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <aside class="col-sm-3">
+                                    <div class="img-wrap"><img :src="product.image_url" :alt="product.name"></div>
+                                </aside> 
+                                <article class="col-sm-6">
+                                    
+                                    <h4 :name="product.name" class="title"> {{ product.name }} </h4>
+                                    <div class="rating-wrap">
+                                        <ul class="rating-stars">
+                                        </ul>
+                                    </div> 
+                                    <p :description="product.description"> {{ product.description }} </p>
                                 
-                                <h4 class="title"> {{ product.name }} </h4>
-                                <div class="rating-wrap">
-                                    <ul class="rating-stars">
-                                        <!-- <li style="width:80%" class="stars-active"> 
-                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                            <i class="fa fa-star"></i> 
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                            <i class="fa fa-star"></i> 
-                                        </li> -->
-                                    </ul>
-                                    <div class="label-rating">132 reviews</div>
-                                    <div class="label-rating">154 orders </div>
-                                </div> 
-                                <p> {{ product.description }} </p>
-                                <!-- <dl class="dlist-align">
-                                    <dt>Color</dt>
-                                    <dd>Black and white</dd>
-                                </dl>  
-                                <dl class="dlist-align">
-                                    <dt>Material</dt>
-                                    <dd>Syntetic, wooden</dd>
-                                </dl>  
-                                <dl class="dlist-align">
-                                    <dt>Delivery</dt>
-                                    <dd>Russia, USA, and Europe</dd>
-                                </dl>  -->
-                            
-                            </article> <!-- col.// -->
-                            <aside class="col-sm-3">
-                                <div class="action-wrap">
-                                    <div class="price-wrap h4">
-                                        <span class="price"> PKR {{ product.price }} </span>	
-                                        <!-- <del class="price-old"> $98</del> -->
-                                    </div> <!-- info-price-detail // -->
-                                    <!-- <p class="text-success">Free shipping</p> -->
-                                    <br>
-                                    <p>
-                                        <a href="#" class="btn btn-primary"> Buy now </a>
-                                        <a href="#" class="btn btn-secondary"> Details  </a>
-                                    </p>
-                                    <!-- <a href="#"><i class="fa fa-heart"></i> Add to wishlist</a> -->
-                                </div>
-                            </aside> 
+                                </article> <!-- col.// -->
+                                <aside class="col-sm-3">
+                                    <div class="action-wrap">
+                                        <div class="price-wrap h4">
+                                            <span class="price"> PKR {{ product.price }} </span>
+                                        </div> 
+                                        <br>
+                                        <slot></slot>
+                                        <a href="#" @click="addToCart(product)" class="btn btn-primary"> Add to Cart</a>
+                                    </div>
+                                </aside> 
+                            </div>
                         </div>
-                    </div>
-                </article> 
+                    </article>
+                </form>
             </div>
         </div>     
     </div>
@@ -87,7 +64,13 @@
                 products: [],
                 loading: false,
                 error: false,
-                query: ''
+                query: '',
+                id: '',
+                name: '',
+                price: '',
+                url: '',
+                description: '',
+                status: ''
             }
         },
         methods: {
@@ -113,7 +96,23 @@
                     console.log(error);
                 });
             },
+            addToCart(item) {
+                this.status = '';
 
+                axios.post('/cart/add', {
+                    name: item.name,
+                    description: item.description,
+                    price: item.price,
+                    url: item.image_url,
+                    id: item.id
+                }).then(response => {
+                    console.log(response)
+                    this.status = response.data.success_message;              
+                }).catch(error => {
+                    console.log(error)
+                    this.status = 'Item submission failed. Try again!'
+                })
+            },            
             beforeMounted() {
                 this.products = filters;
             }
