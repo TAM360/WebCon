@@ -8,15 +8,6 @@
                     <a class="btn btn-secondary" disabled="disabled"  v-if="loading">Searching...</a>
                 </div>
                 <input type="text" @keyup.enter="search()"  placeholder="Paints, Cements, Tiles etc" class="form-control"  v-model="query">
-                <div class="alert alert-danger" role="alert" v-if="error">
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    {{ error }}
-                </div>
-                <div class="alert alert-success" role="alert" v-if="status">
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true">
-                        {{ status }}
-                    </span>
-                </div>
             </div>
 
             <div v-for="(product, key) in products" :key="key">
@@ -35,7 +26,12 @@
                                         </ul>
                                     </div> 
                                     <p :description="product.description"> {{ product.description }} </p>
-                                
+                                    <span class="alert alert-danger" role="alert" v-if="error">
+                                        {{ error }}
+                                    </span>
+                                    <span class="alert alert-success" role="alert" v-if="status">
+                                       {{ status }}
+                                    </span>
                                 </article> <!-- col.// -->
                                 <aside class="col-sm-3">
                                     <div class="action-wrap">
@@ -44,7 +40,8 @@
                                         </div> 
                                         <br>
                                         <slot></slot>
-                                        <a href="#" @click="addToCart(product)" class="btn btn-primary"> Add to Cart</a>
+                                        <a href="#" @click="addToCart(product)" class="btn btn-primary">Add to Cart</a>
+                                        <a href="#" @click="checkOut()" class="btn btn-primary">Checkout</a>
                                     </div>
                                 </aside> 
                             </div>
@@ -112,7 +109,17 @@
                     console.log(error)
                     this.status = 'Item submission failed. Try again!'
                 })
-            },            
+            },
+
+            checkOut() {
+                axios.get('/cart/checkout', {
+                }).then(response => {
+                    console.log(response)           
+                }).catch(error => {
+                    console.log(error)
+                })
+            },
+
             beforeMounted() {
                 this.products = filters;
             }

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use App\CompanyProduct;
+use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Hash;
+Use App\User;
 
 class ShoppingCartController extends Controller
 {
@@ -36,17 +38,31 @@ class ShoppingCartController extends Controller
      */
     public function store(Request $request)
     {
-        Cart::add([
-            'id' => $request->id,
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => (double)$request->price,
-            'url' => $request->url,
-            'qty' => 1
-        ])
-        ->associate('App\CompanyProduct');
-        // dd(Cart::count());
-        // redirect('cart.index')->with('success_message', 'item has been added in cart.');
+        if (Auth::user()->identifier) {
+            Cart::instance(Auth::user()->identifier)::add([
+                'id' => $request->id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => (double)$request->price,
+                'url' => $request->url,
+                'qty' => 1
+            ])
+            ->associate('App\CompanyProduct');
+        } else {
+            $identifier = Hash::make(Faker::create()->name);
+            Cart::instance($identifier)::add([
+                'id' => $request->id,
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => (double)$request->price,
+                'url' => $request->url,
+                'qty' => 1
+            ])
+            ->associate('App\CompanyProduct');
+
+            User::where('id', Auth::user()->id)->update(['identifier' => $identifier]);
+
+        }
         return ['success_message' => 'item has been added in cart.'];
     }
 
@@ -93,5 +109,9 @@ class ShoppingCartController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function checkout() {
+        redirect('shopping-cart');
     }
 }

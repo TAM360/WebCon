@@ -59376,9 +59376,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 var axios = __webpack_require__(3);
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -59439,6 +59436,13 @@ var axios = __webpack_require__(3);
             }).catch(function (error) {
                 console.log(error);
                 _this2.status = 'Item submission failed. Try again!';
+            });
+        },
+        checkOut: function checkOut() {
+            axios.get('/cart/checkout', {}).then(function (response) {
+                console.log(response);
+            }).catch(function (error) {
+                console.log(error);
             });
         },
         beforeMounted: function beforeMounted() {
@@ -59518,49 +59522,7 @@ var render = function() {
                 _vm.query = $event.target.value
               }
             }
-          }),
-          _vm._v(" "),
-          _vm.error
-            ? _c(
-                "div",
-                { staticClass: "alert alert-danger", attrs: { role: "alert" } },
-                [
-                  _c("span", {
-                    staticClass: "glyphicon glyphicon-exclamation-sign",
-                    attrs: { "aria-hidden": "true" }
-                  }),
-                  _vm._v(
-                    "\n                " + _vm._s(_vm.error) + "\n            "
-                  )
-                ]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.status
-            ? _c(
-                "div",
-                {
-                  staticClass: "alert alert-success",
-                  attrs: { role: "alert" }
-                },
-                [
-                  _c(
-                    "span",
-                    {
-                      staticClass: "glyphicon glyphicon-exclamation-sign",
-                      attrs: { "aria-hidden": "true" }
-                    },
-                    [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(_vm.status) +
-                          "\n                "
-                      )
-                    ]
-                  )
-                ]
-              )
-            : _vm._e()
+          })
         ]),
         _vm._v(" "),
         _vm._l(_vm.products, function(product, key) {
@@ -59596,7 +59558,41 @@ var render = function() {
                           "p",
                           { attrs: { description: product.description } },
                           [_vm._v(" " + _vm._s(product.description) + " ")]
-                        )
+                        ),
+                        _vm._v(" "),
+                        _vm.error
+                          ? _c(
+                              "span",
+                              {
+                                staticClass: "alert alert-danger",
+                                attrs: { role: "alert" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(_vm.error) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.status
+                          ? _c(
+                              "span",
+                              {
+                                staticClass: "alert alert-success",
+                                attrs: { role: "alert" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                   " +
+                                    _vm._s(_vm.status) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          : _vm._e()
                       ]),
                       _vm._v(" "),
                       _c("aside", { staticClass: "col-sm-3" }, [
@@ -59625,7 +59621,21 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v(" Add to Cart")]
+                              [_vm._v("Add to Cart")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "btn btn-primary",
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.checkOut()
+                                  }
+                                }
+                              },
+                              [_vm._v("Checkout")]
                             )
                           ],
                           2
